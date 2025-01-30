@@ -18,7 +18,6 @@ http.route({
     }
 
     try {
-      // @ts-expect-error empty internal obj
       const payload = await ctx.runAction(internal.lemonSqueezy.verifyWebhook, {
         payload: payloadString,
         signature,
