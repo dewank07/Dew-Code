@@ -33,7 +33,8 @@ function EditorPanel() {
 
   const handleRefresh = () => {
     const defaultCode = LANGUAGE_CONFIG[language].defaultCode;
-    // @ts-expect-error: no type in editor
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore// @ts-expect-error: no type in editor
     if (editor) editor.setValue(defaultCode);
     localStorage.removeItem(`editor-code-${language}`);
   };
