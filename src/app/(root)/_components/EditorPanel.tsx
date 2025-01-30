@@ -21,7 +21,8 @@ function EditorPanel() {
   useEffect(() => {
     const savedCode = localStorage.getItem(`editor-code-${language}`);
     const newCode = savedCode || LANGUAGE_CONFIG[language].defaultCode;
-    // @ts-expect-error no type in editor
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     if (editor) editor.setValue(newCode);
   }, [language, editor]);
 
@@ -32,7 +33,7 @@ function EditorPanel() {
 
   const handleRefresh = () => {
     const defaultCode = LANGUAGE_CONFIG[language].defaultCode;
-    // @ts-expect-error no type in editor
+    // @ts-expect-error: no type in editor
     if (editor) editor.setValue(defaultCode);
     localStorage.removeItem(`editor-code-${language}`);
   };
@@ -113,7 +114,8 @@ function EditorPanel() {
               onChange={handleEditorChange}
               theme={theme}
               beforeMount={defineMonacoThemes}
-              // @ts-expect-error no type in editor
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
               onMount={(editor) => setEditor(editor)}
               options={{
                 minimap: { enabled: false },

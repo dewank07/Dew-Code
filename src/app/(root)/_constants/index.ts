@@ -423,7 +423,8 @@ export const THEME_DEFINITONS = {
 export const defineMonacoThemes = (monaco: Monaco) => {
   Object.entries(THEME_DEFINITONS).forEach(([themeName, themeData]) => {
     monaco.editor.defineTheme(themeName, {
-      // @ts-expect-error no type in editor
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       base: themeData.base,
       inherit: themeData.inherit,
       rules: themeData.rules.map((rule) => ({
