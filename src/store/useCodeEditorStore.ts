@@ -36,10 +36,12 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
     editor: null,
     executionResult: null,
 
+    // @ts-expect-error no type in editor
     getCode: () => get().editor?.getValue() || "",
 
     setEditor: (editor: Monaco) => {
       const savedCode = localStorage.getItem(`editor-code-${get().language}`);
+      // @ts-expect-error no type in editor
       if (savedCode) editor.setValue(savedCode);
 
       set({ editor });
@@ -57,6 +59,7 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
 
     setLanguage: (language: string) => {
       // Save current language code before switching
+      // @ts-expect-error no type in editor
       const currentCode = get().editor?.getValue();
       if (currentCode) {
         localStorage.setItem(`editor-code-${get().language}`, currentCode);
@@ -161,5 +164,4 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
   };
 });
 
-export const getExecutionResult = () =>
-  useCodeEditorStore.getState().executionResult;
+export const getExecutionResult = () => useCodeEditorStore.getState().executionResult;
